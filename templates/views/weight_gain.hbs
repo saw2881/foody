@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weight Gain Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <style>
+        body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#user-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#user-details {
+    flex-grow: 1;
+}
+
+#user-images {
+    display: flex;
+}
+
+img {
+    width: 150px;
+    height: 150px;
+    margin-right: 10px;
+    border-radius: 8px;
+}
+
+    </style>
+    <div class="container">
+        <header>
+            <h1>Weight Gain Tracker</h1>
+        </header>
+        <section id="user-info">
+            <div id="user-details">
+                <h2>User Details</h2>
+                <p><strong>Age:</strong> <span id="age"></span></p>
+                <p><strong>Height:</strong> <span id="height"></span> cm</p>
+                <p><strong>Weight:</strong> <span id="weight"></span> kg</p>
+                <p><strong>BMI:</strong> <span id="bmi"></span></p>
+            </div>
+            <div id="user-images">
+                <img src="image1.jpg" alt="Weight gain Image 1">
+                <img src="image2.jpg" alt="Weight gain Image 2">
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    fetchData();
+});
+
+function fetchData() {
+    // Fetch data from the backend (you need to implement the backend"/api/getUserData"  "fatch by mongo db data api .")
+    fetch('/src/sign_app.js')
+        .then(response => response.json())
+        .then(data => {
+            displayUserData(data);
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+
+function displayUserData(data) {
+    const ageElement = document.getElementById('age');
+    const heightElement = document.getElementById('height');
+    const weightElement = document.getElementById('weight');
+    const bmiElement = document.getElementById('bmi');
+
+    ageElement.textContent = data.age;
+    heightElement.textContent = data.height;
+    weightElement.textContent = data.weight;
+    bmiElement.textContent = data.bmi;
+}
+
+</script>
+</html>

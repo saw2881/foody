@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV File Handling</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSV File Handling Example</h1>
+    <table id="csvTable">
+        <!-- Table content will be dynamically added using JavaScript -->
+    </table>
+
+    <script src="script.js"></script>
+</body>
+
+<script>
+    // Add your JavaScript code here, e.g., to dynamically populate the table with CSV data
+
+// You can use the 'results' array obtained from the Node.js script
+
+const table = document.getElementById('csvTable');
+
+// Function to populate the table with CSV data
+function populateTable(data) {
+    // Add table header
+    const headerRow = table.insertRow(0);
+    for (let key in data[0]) {
+        const headerCell = headerRow.insertCell(-1);
+        headerCell.textContent = key;
+    }
+
+    // Add table rows
+    for (let i = 0; i < data.length; i++) {
+        const row = table.insertRow(-1);
+        for (let key in data[i]) {
+            const cell = row.insertCell(-1);
+            cell.textContent = data[i][key];
+        }
+    }
+}
+
+// Replace 'results' with the actual array obtained from the Node.js script
+populateTable(results);
+
+</script>
+</html>
