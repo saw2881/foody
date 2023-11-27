@@ -7,10 +7,6 @@ const app = express();
 const port = 5000;
 
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://sahasantanu38:sGFxjYFLY26lPJq8@foody-db.ryrramb.mongodb.net/?retryWrites=true&w=majority";
-
-
 const statis_path = path.join(__dirname,"../templates/views/signin.hbs");
 app.use(express.static(statis_path));
 app.set("view engine","hbs")

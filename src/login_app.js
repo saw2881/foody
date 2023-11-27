@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model('User', userSchema);
 
 // Middleware to parse JSON data
-app.use(bodyParser.json());
+
 
 // POST endpoint for user registration
 app.post('/register', async (req, res) => {
