@@ -6,6 +6,7 @@ const bCrypt = require("bcrypt");
 const saltRounds = 10;
 
 function configure(app) {
+    const userService = new UserService();
     
     //GET
     app.get("/register", (req, res) => {
@@ -28,7 +29,6 @@ function configure(app) {
             weight: parseInt(requestBody.weight)
         });
 
-        const userService = new UserService();
         userService.register(user);
     });
     

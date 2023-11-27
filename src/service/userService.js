@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const User = require("../models/user")
+const bCrypt = require("bcrypt");
 
 class UserService {
 
@@ -19,6 +20,20 @@ class UserService {
 
         await newUser.save();
     }
+    
+    async login(email, password) {
+
+        const user = await User.findOne({
+            email: email
+        });
+
+        if(!user) {
+            throw new Error(`${newUser.email} does not exist`)
+        }
+
+       return await bCrypt.compare(password, user.password);
+    }
+
 }
 
 module.exports = UserService;
