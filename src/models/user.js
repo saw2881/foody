@@ -9,7 +9,8 @@ const userSchema = new mongoose.Schema({
     age: Number,
     height: Number,
     weight: Number,
-    password: String
+    password: String,
+    bmi: Number
 });
 
 const User = mongoose.model('user', userSchema);
