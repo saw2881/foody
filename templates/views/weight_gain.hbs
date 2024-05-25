@@ -53,22 +53,24 @@ img {
     </style>
     <div class="container">
         <header>
-            <h1>Weight Gain Tracker</h1>
+            <h1>Weight Gain </h1>
         </header>
         <section id="user-info">
             <div id="user-details">
                 <h2>User Details</h2>
-                <p><strong>Age:</strong> <span id="age"></span></p>
-                <p><strong>Height:</strong> <span id="height"></span> cm</p>
-                <p><strong>Weight:</strong> <span id="weight"></span> kg</p>
+                <p><strong>Age:</strong> <span id="age">{{age}}</span></p>
+                <p><strong>Height:</strong> <span id="height">{{height}}</span> cm</p>
+                <p><strong>Weight:</strong> <span id="weight">{{weight}}</span> kg</p>
                 <p><strong>BMI:</strong> <span id="bmi"></span></p>
             </div>
-            <div id="user-images">
+            {{!-- <div id="user-images">
                 <img src="image1.jpg" alt="Weight gain Image 1">
                 <img src="image2.jpg" alt="Weight gain Image 2">
-            </div>
+            </div> --}}
         </section>
     </div>
+
+    <script src="script.js"></script>
 </body>
 <script>
     document.addEventListener('DOMContentLoaded', () => {

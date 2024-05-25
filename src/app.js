@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
+const mongoose = require("mongoose");
+const session = require('express-session');
 
 // Initializing Express app
 const app = express();
@@ -20,6 +22,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(static_path));
 
+// Configure Sessions
+app.use(session({
+    secret: 'your_secret_key', // Change this to a secure random string
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } // Set to true if using HTTPS
+  }));
+
 hbs.registerPartials(partials_path);
 
 require('./controller/registrationController')(app);
@@ -34,5 +44,22 @@ app.get("*",(req, res)=> {
 });
 
 app.listen(port, () => {
+
+    this.dbUrl = "mongodb://localhost:27017/foody";
+    mongoose.connect(this.dbUrl,  {
+            authSource: "admin",
+            user: "admin",
+            pass: "admin",
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+          })
+        .then(() => {
+            console.log('Database connection successful');
+          })
+          .catch((err) => {
+            console.error('Database connection error:', err);
+    });
     console.log(`Server is running on port ${port}`);
 });
+
+module.exports = mongoose;

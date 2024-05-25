@@ -1,12 +1,9 @@
-const mongoose = require("mongoose");
 const User = require("../models/user")
 const bCrypt = require("bcrypt");
 
 class UserService {
 
     constructor() {
-        this.dbUrl = "mongodb://127.0.0.1:27017/foody";
-        mongoose.connect(this.dbUrl);
     }
 
     async register(newUser) {
@@ -20,20 +17,34 @@ class UserService {
 
         await newUser.save();
     }
-    
-    async login(email, password) {
 
+    async login(email, password) {
         const user = await User.findOne({
             email: email
         });
 
-        if(!user) {
-            throw new Error(`${newUser.email} does not exist`)
+        if (user) {
+           const passwordMatches = await bCrypt.compare(password, user.password);
+           if (!passwordMatches)
+                throw new Error(`Password does not match for ${email}`);  
         }
-
-       return await bCrypt.compare(password, user.password);
+        else {
+            throw new Error(`User with an email of ${email} does not exist`);
+        }
     }
 
+    async getUserDetails(email) {
+        const user = await User.findOne({
+            email: email
+        });
+
+        if (user) {
+            return user;
+         }
+         else {
+             throw new Error(`User with an email of ${email} does not exist`);
+         }
+    }
 }
 
 module.exports = UserService;

@@ -1,23 +1,26 @@
-const UserService = require("./../service/userService");
-const bCrypt = require("bcrypt");
+const UserService = require("../service/userService");
+const session = require('express-session');
 
 function configure(app) {
 
-    const userService = new UserService();
-    //GET
     app.get("/login",(req, res)=> {
-        res.render('login');
+        res.render('login', { session: req.session });
     });
 
-    //POST
-    app.post("/login", async (req, res) => {
+    app.post("/login",async (req, res)=> {
         const requestBody = req.body;
-        const isValidLogin = await userService.login(requestBody.email, requestBody.password);
-
-        if(!isValidLogin)
-            res.render("login");
-        else 
-            res.render("weight_mantain")
+        const userService = new UserService();
+        try {
+            userService.login(requestBody.email, requestBody.password);
+            req.session.email = requestBody.email;
+        }
+        catch (error) {
+            res.send({
+                status: "Error",
+                reason: error.message
+            });
+        }
+        res.redirect('/weight_gain');
     });
 
 }
