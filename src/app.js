@@ -44,8 +44,8 @@ app.get("*",(req, res)=> {
 });
 
 app.listen(port, () => {
-
-    this.dbUrl = "mongodb://localhost:27017/foody";
+  // connection to atlas mongo DB
+  this.dbUrl = "mongodb+srv://cluster0.cgzzmtx.mongodb.net/foody?retryWrites=true&w=majority&appName=Cluster0";
     mongoose.connect(this.dbUrl,  {
             authSource: "admin",
             user: "admin",
