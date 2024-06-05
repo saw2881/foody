@@ -1,27 +1,38 @@
-<div class="container-fluid main-menu">
-            <div class="row">
-                <div class="col-md-10 col-12 mx-auto">
+<nav class="navbar navbar-expand-lg navbar-dark">
 
-                    <nav class="navbar navbar-expand-lg ">
-                        <a class="navbar-brand" href="#"><i class="fa-regular fa-snowflake"> SahaWeather</i></a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                          <span class="navbar-toggler-icon"></span>
-                        </button>
-                      
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                          <ul class="navbar-nav ml-auto">
-                            <li class="nav-item active">
-                              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item">
-                              <a class="nav-link" href="/weather">Weather</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/about">About us</a>
-                              </li>
+  <a class="navbar-brand" href="">foody</a>
 
-                        </div>
-                      </nav>
-                </div>
-            </div>
-        </div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/">HOME</a>
+      </li>
+      {{#if session.email}}
+        <li class="nav-item">
+          <a class="nav-link" href="./payment">PAYMENT</a>
+        </li>
+      {{/if}}
+      <li class="nav-item">
+        <a class="nav-link" href="#footer">CONTACT US</a>
+      </li>
+
+      {{#unless session.email}}
+        <li class="nav-item">
+          <a class="nav-link" href="./register">REGISTER</a>
+        </li>
+        <li class="nav-item">
+          <a class="  btn btn-outline-light btn-lg download-button " href="login">LOG IN</a>
+        </li>
+      {{/unless}}
+      <li class="nav-item">
+        <a class="nav-link" href="#about">ABOUT</a>
+      </li>
+    </ul>
+
+  </div>
+</nav>
