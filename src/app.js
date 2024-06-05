@@ -36,6 +36,7 @@ require('./controller/registrationController')(app);
 require('./controller/weightManagementController')(app);
 require('./controller/homeController')(app);
 require('./controller/loginController')(app);
+require('./controller/paymentController')(app);
 
 app.get("*",(req, res)=> {
     res.render('404error',{
@@ -44,8 +45,10 @@ app.get("*",(req, res)=> {
 });
 
 app.listen(port, () => {
+  
   // connection to atlas mongo DB
   this.dbUrl = "mongodb+srv://cluster0.cgzzmtx.mongodb.net/foody?retryWrites=true&w=majority&appName=Cluster0";
+  this.dbUrl = "mongodb://localhost:27017/foody";
     mongoose.connect(this.dbUrl,  {
             authSource: "admin",
             user: "admin",
